@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   const getAllOrders = async () => {
     let mounted = true;
-    fire.firestore().collection('orders-dashboard').onSnapshot((querySnapshop) => {
+    fire.firestore().collection('orders-dashboard').orderBy('created_at', 'desc').onSnapshot((querySnapshop) => {
       const docs = [] as firebase.firestore.DocumentData;
       querySnapshop.forEach((doc) =>  docs.push({ ...doc.data(), id: doc.id }));
       mounted && setAllOrders(docs);

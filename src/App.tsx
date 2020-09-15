@@ -20,20 +20,20 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute.compo
 //   },
 // };
 function App() {
-  const context = useContext(MyContext);
-  const authObserver = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      if(user) {
-        context.setUser(true)
-      } else {
-        context.setUser(false);
-      }
-    })
-  };
+  const { setUser } = useContext(MyContext);
 
   useEffect(() => {
+    const authObserver = () => {
+      fire.auth().onAuthStateChanged((user) => {
+        if(user) {
+          setUser(true)
+        } else {
+          setUser(false);
+        }
+      })
+    };
     authObserver();
-  }, []);
+  }, [setUser]);
   return (
     <Grommet plain >
       <BrowserRouter>
