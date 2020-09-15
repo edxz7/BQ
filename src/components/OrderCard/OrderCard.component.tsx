@@ -40,7 +40,6 @@ const OrderCard = () => {
   const colorTime = (dateParam: number) => {
     const transcurredTime = (Date.now() - dateParam) / 1000 / 60;
     let bg = transcurredTime < 10 ? 'accent-1' : transcurredTime < 20 ? 'status-warning' : 'status-error';
-    console.log('Cual es el date', transcurredTime)
     return bg;
   }
 
@@ -53,7 +52,6 @@ const OrderCard = () => {
       <Modal 
         textContent={ {header: 'Orden Entregada', body: 'Confirma que esta orden ya fue entregada'} } 
         callback={() => {
-            console.log("currentId: ", currentId);
             endService(currentId)
             updateOrderStatus(currentId)
           }
@@ -94,7 +92,6 @@ const OrderCard = () => {
                     let mounted = true;
                     mounted && setCurrentId(order.id);
                     onOpen();
-                    console.log("currentId: ", currentId);
                     return () => mounted = false;
                     }} primary color="accent-5" label="Cerrar Orden" hoverIndicator/>
                     <CardHeader justify="center" >
