@@ -21,19 +21,19 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute.compo
 // };
 function App() {
   const context = useContext(MyContext);
+  const authObserver = () => {
+    fire.auth().onAuthStateChanged((user) => {
+      if(user) {
+        context.setUser(true)
+      } else {
+        context.setUser(false);
+      }
+    })
+  };
 
   useEffect(() => {
-    const authObserver = () => {
-      fire.auth().onAuthStateChanged((user) => {
-        if(user) {
-          context.setUser(true)
-        } else {
-          context.setUser(false);
-        }
-      })
-    };
     authObserver();
-  }, [context]);
+  }, []);
   return (
     <Grommet plain >
       <BrowserRouter>

@@ -21,9 +21,11 @@ const AppHeader = () => {
         items={[
           { 
             label: 'logout', onClick: () => { 
+            let mounted = true;  
             context.logout();
-            context.setUser(false);
+            mounted && context.setUser(false);
             push("/")
+            return () => { mounted = false; }
             } 
           },{
             label: 'dashboard', onClick: () => { 

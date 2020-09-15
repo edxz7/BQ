@@ -16,7 +16,7 @@ const NameFormatter = (item : MenuOrder) => {
                   extras: { }
                     {
                       item.extras && item.extras.length > 0
-                    ? item.extras.map(extra => <span key={extra}>{extra}</span>) 
+                    ? item.extras.map(extra => <span key={extra}>{extra} { } </span>) 
                       : 'Sin extras' 
                     } 
                 </Paragraph>

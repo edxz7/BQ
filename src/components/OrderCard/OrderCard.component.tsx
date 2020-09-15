@@ -99,8 +99,10 @@ const OrderCard = () => {
                         icon={<Clock color="plain" />} hoverIndicator
                         label={ <Moment
                           onChange={() =>{
-                          setDate(order.created_at.toDate()) 
-                          colorTime(date)
+                            let mounted = true;
+                            colorTime(date);
+                            mounted && setDate(order.created_at.toDate()); 
+                            return () => mounted = false;
                           }} fromNow>{order.created_at.toDate()}</Moment> } plain>
                       </Button>
                     </CardHeader>

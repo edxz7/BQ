@@ -8,4 +8,7 @@ export const GridMain = styled.main`
       margin-right: 35px;
       grid-template-columns: 100%;
     }
+  @media only screen and (max-width: 770px) {
+      grid-template-columns: 40% 60%;
+    }
 `;
