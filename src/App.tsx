@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Orders from './pages/orders/Orders.component';
 import { Grommet } from 'grommet';
 import Login from './pages/Login/Login';
@@ -20,7 +20,7 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute.compo
 //   },
 // };
 function App() {
-  const { setUser } = useContext(MyContext);
+  const { setUser, state } = useContext(MyContext);
 
   useEffect(() => {
     const authObserver = () => {
@@ -37,6 +37,7 @@ function App() {
   return (
     <Grommet plain >
       <BrowserRouter>
+        {state.isLoggedIn && <Redirect to="/orders"  />}
         <Switch>
           <Route exact path="/" component={Login} />
           <ProtectedRoute exact path="/orders" component={Orders} />
